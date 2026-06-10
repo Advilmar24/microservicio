@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  catalogo:
+    build: ./catalogo/catalogo
+    ports:
+      - "8081:8081"
+    depends_on:
+      - auth
+
+  wishlist:
+    build: ./wishlist/wishlist
+    ports:
+      - "8082:8082"
+    depends_on:
+      - auth
+
+  auth:
+    build: ./auth/auth
+    ports:
+      - "8084:8084"
+
+  gateway:
+    build: ./gateway/gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - catalogo
+      - wishlist
+      - auth
+      - notificaciones
+
+  notificaciones:
+    build: ./notificaciones/notificaciones
+    ports:
+      - "8083:8083"
+    depends_on:
+      - auth
