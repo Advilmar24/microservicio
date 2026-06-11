@@ -13,28 +13,28 @@ spring:
           predicates:
             - Path=/productos/**
           filters:
-            - RewritePath=/productos/?(?<segment>.*), /api/v1/products/$\{segment\}
+            - RewritePath=/productos/?(?<segment>.*), /api/v1/products/${segment}
 
         - id: wishlist
           uri: http://wishlist:8082
           predicates:
             - Path=/wishlist/**
           filters:
-            - RewritePath=/wishlist/?(?<segment>.*), /api/v1/wishList/$\{segment\}
+            - RewritePath=/wishlist/?(?<segment>.*), /api/v1/wishList/${segment}
 
         - id: notificaciones
           uri: http://notificaciones:8083
           predicates:
             - Path=/notificaciones/**
           filters:
-            - RewritePath=/notificaciones/?(?<segment>.*), /api/v1/notificacion/$\{segment\}
+            - RewritePath=/notificaciones/?(?<segment>.*), /api/v1/notificacion/${segment}
 
         - id: auth
           uri: http://auth:8084
           predicates:
             - Path=/auth/**
           filters:
-            - RewritePath=/auth/?(?<segment>.*), /api/v1/auth/$\{segment\}
+            - RewritePath=/auth/?(?<segment>.*), /api/v1/auth/${segment}
 
 security:
   jwt:

@@ -13,8 +13,6 @@ import com.micro_servicios.auth.dto.LoginResponseDTO;
 import com.micro_servicios.auth.dto.MessageResponseDTO;
 import com.micro_servicios.auth.dto.RefreshTokenResponseDTO;
 import com.micro_servicios.auth.dto.RegisterRequestDTO;
-import com.micro_servicios.auth.role.RolEnum;
-import com.micro_servicios.auth.security.RequiresRole;
 import com.micro_servicios.auth.service.AuthService;
 
 import jakarta.servlet.http.HttpServletRequest;

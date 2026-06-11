@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.micro_servicios.wishlist.entity.WishListHistorial;
 
-public interface WishlistHistorialRepository extends JpaRepository<WishListHistorial, Integer> {
+public interface WishlistHistorialRepository extends JpaRepository<WishListHistorial, Long> {
 
-    List<WishListHistorial> findByWishListId(Integer wishListId);
+    List<WishListHistorial> findByUsuarioId(Integer usuarioId);
     
+    List<WishListHistorial> findByUsuarioIdOrderByFechaDesc(
+        Integer usuarioId);
 }

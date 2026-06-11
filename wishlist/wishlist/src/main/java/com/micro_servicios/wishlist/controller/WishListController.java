@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.micro_servicios.wishlist.dto.MessageResponseDTO;
+import com.micro_servicios.wishlist.dto.WishListHistorialResponseDTO;
 import com.micro_servicios.wishlist.dto.WishListRequestDTO;
 import com.micro_servicios.wishlist.dto.WishListResponseDTO;
 
@@ -24,15 +25,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/wisjList")
+@RequestMapping("/wishList")
 @RequiredArgsConstructor
 public class WishListController {
 
 private final WishListService wishListService;
 
 
-    @PostMapping
+    @PostMapping("/agregar")
     public MessageResponseDTO agregar(@Valid @RequestBody WishListRequestDTO wishListRequestDTO){
+        System.out.println("ENTRO A WISHLIST");
         return wishListService.agregarProducto(wishListRequestDTO);
     }
 
@@ -42,6 +44,10 @@ private final WishListService wishListService;
 
     }
 
+    @GetMapping("historial/{usuarioId}")
+    public List<WishListHistorialResponseDTO> historial(@PathVariable Integer usuarioId){
+        return wishListService.obtenerHistorial(usuarioId);
+    }
     @DeleteMapping("/{id}")
     public MessageResponseDTO eliminar(@PathVariable Integer id){
         return wishListService.deleteProduct(id);

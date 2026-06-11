@@ -31,12 +31,12 @@ public class NotificacionesController {
     private final NotificacionesService notificacionesService;
 
     
-    @PostMapping
+    @PostMapping("/crear")
     public MessageResponseDTO crear(@Valid @RequestBody NotificacionesRequestDTo requestDTo){
         return notificacionesService.crearNotificacion(requestDTo);
     }
 
-    @GetMapping("path")
+    @GetMapping("/path")
     public List<NotificacionesResponseDTO> listar(){
         return notificacionesService.listarTodas();
     }
@@ -51,7 +51,7 @@ public class NotificacionesController {
         return notificacionesService.actualizarEstado(id, nuevoEstado);
     }
 
-    @DeleteMapping
+    @DeleteMapping("delete")
     public MessageResponseDTO eliminar(@PathVariable Integer id){
         return notificacionesService.eliminarNotificacion(id);
     }

@@ -1,4 +1,4 @@
-package com.micro_servicios.auth.filter;
+/*package com.micro_servicios.auth.filter;
 
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class JwtValidationFilter extends OncePerRequestFilter {
     /**
      * Servicio de jwt
-    */
+    *
     private final JwtService jwtService;
 
 
@@ -70,4 +70,4 @@ public class JwtValidationFilter extends OncePerRequestFilter {
 
         return path.startsWith("/api/v1/auth/login");
     }
-} //TODO ESTE ARCHIVO SE VA A MOVER AL GATEWAY
+} */ //TODO ESTE ARCHIVO SE VA A MOVER AL GATEWAY

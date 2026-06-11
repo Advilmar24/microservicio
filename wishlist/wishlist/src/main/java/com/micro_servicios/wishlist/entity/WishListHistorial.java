@@ -25,7 +25,11 @@ public class WishListHistorial {
     private Long wishListId;
 
     @NotNull
-    @Column(name = "product_id")
+    @Column(name = "usuario_id")
+    private Long usuarioId;
+
+    @NotNull
+    @Column(name = "producto_id")
     private Long productId;
 
     @NotNull

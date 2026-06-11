@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -32,7 +31,7 @@ public class ProductsController {
 
     private final ProductsService productsService;  
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<MenssageResponseDTO> create(
         @RequestBody ProductsRequestDTO productsRequestDTO){
 
@@ -41,7 +40,7 @@ public class ProductsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<ProductsResponseDTO>> getAll(){
 
         List<ProductsResponseDTO> products = 

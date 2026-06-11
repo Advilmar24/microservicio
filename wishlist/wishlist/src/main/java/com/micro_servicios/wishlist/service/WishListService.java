@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.micro_servicios.wishlist.dto.MessageResponseDTO;
+import com.micro_servicios.wishlist.dto.WishListHistorialResponseDTO;
 import com.micro_servicios.wishlist.dto.WishListRequestDTO;
 import com.micro_servicios.wishlist.dto.WishListResponseDTO;
 import com.micro_servicios.wishlist.entity.WishListHistorial;
@@ -37,6 +38,7 @@ public class WishListService {
         WishListHistorial wishListHistorial = new WishListHistorial();
 
         wishListHistorial.setWishListId(wishlist.getId());
+        wishListHistorial.setUsuarioId(wishlist.getUsuarioId());
         wishListHistorial.setProductId(requestDTO.getProductoId());
         wishListHistorial.setAccion("agregado");
         wishListHistorial.setFecha(LocalDateTime.now());
@@ -65,6 +67,7 @@ public class WishListService {
 
                 WishListHistorial wishListHistorial = new WishListHistorial();
                 wishListHistorial.setWishListId(wishlist.getId());
+                wishListHistorial.setUsuarioId(wishlist.getUsuarioId());
                 wishListHistorial.setProductId(wishlist.getProductoId());
                 wishListHistorial.setAccion("eliminado");
                 wishListHistorial.setFecha(LocalDateTime.now());
@@ -73,6 +76,16 @@ public class WishListService {
                 return new MessageResponseDTO("Producto eliminado");
     }
 
+    public List<WishListHistorialResponseDTO> obtenerHistorial(Integer usuarioId){
+
+        return wishlistHistorialRepository
+                .findByUsuarioIdOrderByFechaDesc(usuarioId)
+                .stream()
+                .map(this :: toHistorialResponse)
+                .toList();
+    }
+
+    
     private WishListResponseDTO toResponse(Wishlist wishlist){
         return WishListResponseDTO.builder()
             .id(wishlist.getId())
@@ -82,4 +95,17 @@ public class WishListService {
             .fechaAgregado(wishlist.getFechaAgregado())
             .build();
     }
+
+
+    private WishListHistorialResponseDTO toHistorialResponse(WishListHistorial historial){
+
+        return WishListHistorialResponseDTO.builder()
+                .usuarioId(historial.getUsuarioId())
+                .productoId(historial.getProductId())
+                .accion(historial.getAccion())
+                .fecha(historial.getFecha())
+                .build();
+    }
+
+
 }
