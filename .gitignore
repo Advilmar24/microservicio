@@ -1,0 +1,14 @@
+# Variables de entorno
+.env
+
+# Maven
+target/
+
+# IntelliJ
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
